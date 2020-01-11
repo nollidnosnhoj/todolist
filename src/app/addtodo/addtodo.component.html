@@ -1,1 +1,25 @@
-<p>addtodo works!</p>
+<form [formGroup]="addForm" (ngSubmit)="addItem()">
+    <div class="form-container">
+        <mat-form-field>
+            <input matInput formControlName="title" placeholder="Title" class="form-control form-textInput" />
+            <mat-error *ngIf="f.title.errors && f.title.errors.required">
+                A title is required.
+            </mat-error>
+            <mat-error *ngIf="f.title.errors && f.title.errors.maxlength">
+                You've reached over max characters.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput formControlName="content" placeholder="Content" class="form-control form-textInput"></textarea>
+            <mat-error *ngIf="f.content.errors && f.content.errors.maxlength">
+                You've reached over max characters.
+            </mat-error>
+        </mat-form-field>
+        <div class="buttons">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!addForm.valid">
+                UPDATE
+            </button>
+            <button mat-button routerLink="/">BACK</button>
+        </div>
+    </div>
+</form>
