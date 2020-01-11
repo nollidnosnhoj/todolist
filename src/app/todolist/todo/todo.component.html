@@ -1,0 +1,45 @@
+<form [formGroup]="updateForm" (ngSubmit)="submitUpdate()">
+    <mat-card>
+        <mat-card-title>{{ todoItem.title }}</mat-card-title>
+        <mat-card-content>
+            <ng-container *ngIf="!isEditing">
+                <div [innerHTML]="todoItem.formattedContent"></div>
+            </ng-container>
+            <ng-container *ngIf="isEditing">
+                <div class="form-container">
+                    <mat-form-field>
+                        <input matInput formControlName="title" placeholder="Title" class="form-control form-textInput" />
+                        <mat-error *ngIf="f.title.errors && f.title.errors.required">
+                            A title is required.
+                        </mat-error>
+                        <mat-error *ngIf="f.title.errors && f.title.errors.maxlength">
+                            You've reached over max characters.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput formControlName="content" placeholder="Content" class="form-control form-textInput"></textarea>
+                        <mat-error *ngIf="f.content.errors && f.content.errors.maxlength">
+                            You've reached over max characters.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </ng-container>
+        </mat-card-content>
+        <mat-card-actions>
+            <ng-container *ngIf="!isEditing">
+                <button mat-raised-button color="primary" (click)="clickEdit()">EDIT</button>
+            </ng-container>
+            <ng-container *ngIf="isEditing">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!updateForm.valid">
+                    UPDATE
+                </button>
+                <button mat-stroked-button color="primary" (click)="cancelEdit()">
+                    CANCEL
+                </button>
+            </ng-container>
+            <button *ngIf="!isEditing" mat-button color="warn" (click)="removeItem()">
+                REMOVE
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</form>
