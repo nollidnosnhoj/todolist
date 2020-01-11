@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from './storage.service';
+import { TodolistStorageService } from './todolist-storage.service';
 import { TodoItem } from '../models/todo.model';
 import { uuid } from 'uuidv4';
 import { Marked } from 'marked-ts';
@@ -9,7 +9,7 @@ import { Marked } from 'marked-ts';
 })
 export class TodolistService {
 
-  constructor(private storage: StorageService) { }
+  constructor(private storage: TodolistStorageService) { }
 
   getList() { return this.storage.get() }
 

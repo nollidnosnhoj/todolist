@@ -6,4 +6,9 @@
             (removing)="removeItem($event)"
         ></app-todo>
     </ng-container>
+    <ng-container *ngIf="todos.length === 0">
+        <div class="no-todos">
+            <p>You currently have nothing to do.</p>
+        </div>
+    </ng-container>
 </div>

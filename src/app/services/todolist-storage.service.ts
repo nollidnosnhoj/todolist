@@ -6,7 +6,7 @@ const STORAGE_NAME = "todolist";
 @Injectable({
   providedIn: 'root'
 })
-export class StorageService {
+export class TodolistStorageService {
 
   private _todolist: TodoItem[];
 
