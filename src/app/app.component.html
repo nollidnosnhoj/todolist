@@ -1,3 +1,19 @@
-<app-header></app-header>
+<header class="todolist-header">
+    <nav>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                    <a routerLink="/"><span>todolist</span></a>
+                    <span class="header-spacer"></span>
+                    <a routerLink="/add">
+                        <mat-icon class="add-todo-icon" aria-hidden="false" aria-label="Add Todo">edit</mat-icon>
+                    </a>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </nav>
+</header>
+<div class="container">
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+</div>
 
-<app-todolist></app-todolist>

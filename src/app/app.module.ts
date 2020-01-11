@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TodolistComponent } from './todolist/todolist.component';
 import { TodoComponent } from './todolist/todo/todo.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AddTodoComponent } from './addtodo/addtodo.component';
 
 // Angular Material Components
 import {MatCardModule} from '@angular/material/card';
@@ -19,17 +20,35 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    component: TodolistComponent
+  },
+  {
+    path: 'add',
+    component: AddTodoComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/',
+    pathMatch: 'full'
+  }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     TodolistComponent,
     TodoComponent,
-    HeaderComponent
+    AddTodoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,

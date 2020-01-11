@@ -3,21 +3,8 @@ import { TodoItem } from '../models/todo.model';
 import { TodolistService } from '../services/todolist.service';
 
 @Component({
-  selector: 'app-todolist',
-  template: `
-<div class="todolist-container">
-  <ng-container *ngFor="let item of todos">
-      <app-todo 
-          [item]="item"
-          (updating)="updateItem($event)"
-          (removing)="removeItem($event)"
-      ></app-todo>
-  </ng-container>
-</div>
-  `,
-  styles: [
-    ".todolist-container { margin: 0 auto; width: 700px; }"
-  ]
+  templateUrl: './todolist.component.html',
+  styleUrls: ['./todolist.component.scss']
 })
 export class TodolistComponent implements OnInit {
 
@@ -36,5 +23,4 @@ export class TodolistComponent implements OnInit {
   removeItem(id: string) {
     this.todos = this.todolistService.removeItem(id);
   }
-
 }
