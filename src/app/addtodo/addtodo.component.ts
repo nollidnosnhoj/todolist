@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TodoItem } from '../models/todo.model';
 import { TodolistService } from '../services/todolist.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   templateUrl: './addtodo.component.html',
@@ -16,6 +17,7 @@ export class AddTodoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private todolistService: TodolistService,
+    private alertService: AlertService,
     private router: Router
   ) { }
 
@@ -37,6 +39,8 @@ export class AddTodoComponent implements OnInit {
     };
 
     this.todolistService.addItem(newTodo);
+
+    this.alertService.success("Successfully added.");
 
     this.router.navigate(['/']);
   }

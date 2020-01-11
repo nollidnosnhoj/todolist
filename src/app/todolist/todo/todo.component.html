@@ -1,7 +1,10 @@
 <div class="todo-card">
     <form [formGroup]="updateForm" (ngSubmit)="submitUpdate()">
         <mat-card>
-            <mat-card-title>{{ todoItem.title }}</mat-card-title>
+            <mat-card-title>
+                <span *ngIf="!isEditing">{{ todoItem.title }}</span>
+                <span *ngIf="isEditing">Updating...</span>
+            </mat-card-title>
             <mat-card-content>
                 <ng-container *ngIf="!isEditing">
                     <div [innerHTML]="todoItem.formattedContent"></div>
@@ -18,7 +21,12 @@
                             </mat-error>
                         </mat-form-field>
                         <mat-form-field>
-                            <textarea matInput formControlName="content" placeholder="Content" class="form-control form-textInput"></textarea>
+                            <textarea matInput formControlName="content" placeholder="Content" class="form-control form-textInput" rows="7"></textarea>
+                            <mat-hint align="end">Formatted in 
+                                <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">
+                                    Markdown
+                                </a>
+                            </mat-hint>
                             <mat-error *ngIf="f.content.errors && f.content.errors.maxlength">
                                 You've reached over max characters.
                             </mat-error>

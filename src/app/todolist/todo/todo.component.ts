@@ -3,6 +3,7 @@ import { TodoItem } from 'src/app/models/todo.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import * as moment from 'moment';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-todo',
@@ -27,7 +28,10 @@ export class TodoComponent implements OnInit {
 
   updateForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(
+    private fb: FormBuilder,
+    private alertService: AlertService
+  ) { 
     this.updatingEvent = new EventEmitter();
     this.removingEvent = new EventEmitter();
   }
@@ -69,6 +73,7 @@ export class TodoComponent implements OnInit {
     Object.assign(this.todoItem, data);
     this.isEditing = false;
     this.updatingEvent.emit(this.todoItem);
+    this.alertService.success("Todo updated!");
   }
 
   removeItem() {
@@ -76,5 +81,6 @@ export class TodoComponent implements OnInit {
       return;
     }
     this.removingEvent.emit(this.todoItem.id);
+    this.alertService.success("Todo removed.");
   }
 }
