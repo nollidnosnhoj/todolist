@@ -20,6 +20,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { TodoformComponent } from './shared/todoform/todoform.component';
 
 
 const appRoutes: Routes = [
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     AppComponent,
     TodolistComponent,
     TodoComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    TodoformComponent
   ],
   imports: [
     BrowserModule,

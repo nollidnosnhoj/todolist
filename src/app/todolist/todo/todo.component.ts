@@ -22,10 +22,7 @@ export class TodoComponent implements OnInit {
 
   isEditing: boolean;
   humanDate: string;
-
   today: Date;
-
-  updateForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -37,28 +34,9 @@ export class TodoComponent implements OnInit {
 
   ngOnInit() {
     this.today = new Date();
-    this.updateForm = this.fb.group({
-      title: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(50)
-      ]),
-      content: new FormControl('', [
-        Validators.maxLength(500)
-      ])
-    });
-  }
-
-  get f() { return this.updateForm.controls; }
-
-  fillForm() {
-    if (this.todoItem) {
-      this.f.title.patchValue(this.todoItem.title);
-      this.f.content.patchValue(this.todoItem.content || "");
-    }
   }
 
   clickEdit() {
-    this.fillForm();
     this.isEditing = true;
   }
 
@@ -66,13 +44,9 @@ export class TodoComponent implements OnInit {
     this.isEditing = false;
   }
 
-  submitUpdate() {
-    if (this.updateForm.invalid) return;
+  updateItem(item: TodoItem) {
     this.isEditing = false;
-    this.updatingEvent.emit({ 
-      ... this.todoItem, 
-      ... this.updateForm.getRawValue() 
-    });
+    this.updatingEvent.emit(item);
     this.alertService.success("Todo updated!");
   }
 

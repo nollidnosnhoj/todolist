@@ -23,4 +23,8 @@ export class TodolistComponent implements OnInit {
   removeItem(id: string) {
     this.todos = this.todolistService.removeItem(id);
   }
+
+  trackById(index, item: TodoItem) {
+    return item.id;
+  }
 }

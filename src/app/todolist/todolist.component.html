@@ -1,5 +1,5 @@
 <div class="todolist-container">
-    <ng-container *ngFor="let item of todos">
+    <ng-container *ngFor="let item of todos; trackBy:trackById">
         <app-todo 
             [item]="item"
             (updating)="updateItem($event)"
