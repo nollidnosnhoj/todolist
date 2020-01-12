@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { TodoItem } from '../models/todo.model';
 import { TodolistService } from '../services/todolist.service';
 import { AlertService } from '../services/alert.service';
 
@@ -33,12 +32,10 @@ export class AddTodoComponent implements OnInit {
   addItem() {
     if (this.addForm.invalid) return;
 
-    const newTodo: TodoItem = {
-      ...this.addForm.getRawValue(),
-      id: ''
-    };
-
-    this.todolistService.addItem(newTodo);
+    this.todolistService.addItem({ 
+      ... this.addForm.getRawValue(),
+      id: '' 
+    });
 
     this.alertService.success("Successfully added.");
 

@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TodoItem } from 'src/app/models/todo.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import * as moment from 'moment';
+import { TodoItem } from 'src/app/models/todo.model';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
@@ -69,10 +68,11 @@ export class TodoComponent implements OnInit {
 
   submitUpdate() {
     if (this.updateForm.invalid) return;
-    const data = this.updateForm.getRawValue();
-    Object.assign(this.todoItem, data);
     this.isEditing = false;
-    this.updatingEvent.emit(this.todoItem);
+    this.updatingEvent.emit({ 
+      ... this.todoItem, 
+      ... this.updateForm.getRawValue() 
+    });
     this.alertService.success("Todo updated!");
   }
 
