@@ -4,6 +4,11 @@
             <span *ngIf="!isEditing">{{ todoItem.title }}</span>
             <span *ngIf="isEditing">Updating...</span>
         </mat-card-title>
+        <ng-container *ngIf="!isEditing && humanDate">
+            <mat-card-subtitle>
+                {{ humanDate }}
+            </mat-card-subtitle>
+        </ng-container>
         <mat-card-content>
             <ng-container *ngIf="!isEditing">
                 <div [innerHTML]="todoItem.formattedContent"></div>

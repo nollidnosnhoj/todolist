@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    RouterModule.forRoot(appRoutes),
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
