@@ -3,4 +3,6 @@ export class TodoItem {
     title: string;
     content?: string;
     formattedContent?: string;
+    dueDate?: string;
+    isCompleted?: boolean;
 }

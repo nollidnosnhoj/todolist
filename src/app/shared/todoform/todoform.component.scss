@@ -5,6 +5,9 @@
 .form-container .form-textInput {
     width: 100%;
 }
+.form-container mat-form-field, .form-container .form-section {
+    margin-bottom: 1rem;
+}
 .form-container button {
     margin-right: 1rem;
 }

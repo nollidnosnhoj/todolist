@@ -3,6 +3,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from 'src/app/models/todo.model';
 import { AlertService } from 'src/app/services/alert.service';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -32,6 +34,7 @@ export class TodoComponent implements OnInit {
 
   ngOnInit() {
     this.today = new Date();
+    this.recalculateHumanDate();
   }
 
   clickEdit() {
@@ -45,6 +48,7 @@ export class TodoComponent implements OnInit {
   updateItem(item: TodoItem) {
     this.isEditing = false;
     this.updatingEvent.emit(item);
+    this.recalculateHumanDate();
     this.alertService.success("Todo updated!");
   }
 
@@ -54,5 +58,17 @@ export class TodoComponent implements OnInit {
     }
     this.removingEvent.emit(this.todoItem.id);
     this.alertService.success("Todo removed.");
+  }
+
+  private recalculateHumanDate() {
+    if (this.todoItem.isCompleted) {
+      this.humanDate = "Completed."
+    }
+    else if (this.todoItem.dueDate) {
+      const relative = moment(this.todoItem.dueDate).from(this.today);
+      this.humanDate = `Due ${relative}`;
+    } else {
+      this.humanDate = "";
+    }
   }
 }
