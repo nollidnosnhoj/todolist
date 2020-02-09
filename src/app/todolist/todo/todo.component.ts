@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { TodoItem } from 'src/app/models/todo.model';
 import { AlertService } from 'src/app/services/alert.service';
@@ -25,7 +24,6 @@ export class TodoComponent implements OnInit {
   today: Date;
 
   constructor(
-    private fb: FormBuilder,
     private alertService: AlertService
   ) { 
     this.updatingEvent = new EventEmitter();
